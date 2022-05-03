@@ -1,0 +1,16 @@
+127.0.0.1 - - [28/Apr/2022:21:07:26 -0300] "GET / HTTP/1.1" 404 751
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/ HTTP/1.1" 200 11002
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/faces/javax.faces.resource/style.css;jsessionid=91231E9C9CB20444352CE957DCE25E92?ln=css HTTP/1.1" 200 67
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/faces/javax.faces.resource/layout/layout.css;jsessionid=91231E9C9CB20444352CE957DCE25E92?ln=primefaces&v=4.0 HTTP/1.1" 200 542
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/faces/javax.faces.resource/jquery/jquery.js;jsessionid=91231E9C9CB20444352CE957DCE25E92?ln=primefaces&v=4.0 HTTP/1.1" 200 105493
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/faces/javax.faces.resource/primefaces.css;jsessionid=91231E9C9CB20444352CE957DCE25E92?ln=primefaces&v=4.0 HTTP/1.1" 200 53386
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/faces/javax.faces.resource/jquery/jquery-plugins.js;jsessionid=91231E9C9CB20444352CE957DCE25E92?ln=primefaces&v=4.0 HTTP/1.1" 200 220747
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/faces/javax.faces.resource/primefaces.js;jsessionid=91231E9C9CB20444352CE957DCE25E92?ln=primefaces&v=4.0 HTTP/1.1" 200 277201
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/faces/javax.faces.resource/scripts.js;jsessionid=91231E9C9CB20444352CE957DCE25E92?ln=js HTTP/1.1" 200 195
+127.0.0.1 - - [28/Apr/2022:21:07:29 -0300] "GET /Farmacia/faces/javax.faces.resource/layout/layout.js;jsessionid=91231E9C9CB20444352CE957DCE25E92?ln=primefaces&v=4.0 HTTP/1.1" 200 87653
+127.0.0.1 - - [28/Apr/2022:21:07:42 -0300] "POST /Farmacia/faces/pages/principal.xhtml;jsessionid=91231E9C9CB20444352CE957DCE25E92 HTTP/1.1" 200 210
+127.0.0.1 - - [28/Apr/2022:21:07:43 -0300] "POST /Farmacia/faces/pages/principal.xhtml;jsessionid=91231E9C9CB20444352CE957DCE25E92 HTTP/1.1" 200 210
+127.0.0.1 - - [28/Apr/2022:21:07:44 -0300] "POST /Farmacia/faces/pages/principal.xhtml;jsessionid=91231E9C9CB20444352CE957DCE25E92 HTTP/1.1" 200 210
+127.0.0.1 - - [28/Apr/2022:21:07:46 -0300] "GET /Farmacia/faces/pages/principal.xhtml;jsessionid=91231E9C9CB20444352CE957DCE25E92 HTTP/1.1" 200 10518
+127.0.0.1 - - [28/Apr/2022:21:08:01 -0300] "POST /Farmacia/faces/pages/principal.xhtml HTTP/1.1" 200 210
+127.0.0.1 - - [28/Apr/2022:21:08:02 -0300] "POST /Farmacia/faces/pages/principal.xhtml HTTP/1.1" 200 210

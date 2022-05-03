@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+E:\Sistema Fármacia java Web\Workspace-Vendas\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2700852882.index
+3499446782.index
+3474794454.index
+1076969222.index
+4012018040.index
+3642914220.index

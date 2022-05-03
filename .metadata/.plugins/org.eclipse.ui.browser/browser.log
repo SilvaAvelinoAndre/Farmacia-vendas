@@ -1,0 +1,5 @@
+
+abr. 26, 2022 14:26:40.998 NEW SESSION
+abr. 26, 2022 14:26:40.999 
+abr. 26, 2022 14:26:40.999 ###!!! [Child][PContentChild] Error: RunMessage(msgname=PContent::Msg_DestroyBrowsingContextGroup) Channel closing: too late to send/recv, messages will be lost
+abr. 26, 2022 14:26:40.999 

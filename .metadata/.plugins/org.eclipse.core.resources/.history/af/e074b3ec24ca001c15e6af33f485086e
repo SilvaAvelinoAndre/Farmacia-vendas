@@ -1,0 +1,101 @@
+package br.com.farmacia.domain;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tb_produtos")
+public class Produtos {
+	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@Column(name="pro_id")
+	private Long id;
+	
+	@Column(name="pro_descricao")
+	private String descricao;
+	
+	@Column(name="pro_quantidade")
+	private Integer quantidade;
+	
+	@Column(name="pro_preco")
+	private BigDecimal preco;
+	
+	
+	private Fornecedores fornecedores = new Fornecedores();
+	
+	
+	public Produtos() {
+		
+	}
+
+
+	public Produtos(Long id, String descricao, Integer quantidade, BigDecimal preco, Fornecedores fornecedores) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.quantidade = quantidade;
+		this.preco = preco;
+		this.fornecedores = fornecedores;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
+
+
+	public Fornecedores getFornecedores() {
+		return fornecedores;
+	}
+
+
+	public void setFornecedores(Fornecedores fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+
+
+	
+	
+}

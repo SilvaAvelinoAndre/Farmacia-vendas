@@ -1,0 +1,3 @@
+.ui-widget, .ui-widget .ui-widget{
+	front-size: 95% !important;
+}
