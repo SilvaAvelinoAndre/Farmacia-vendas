@@ -8,7 +8,7 @@ public class GerarTabela {
 
 
 		HibernateUtil.getSessionFactory();
-		HibernateUtil.getSessionFactory().close();;
+		HibernateUtil.getSessionFactory().close();
 	}
 
 }

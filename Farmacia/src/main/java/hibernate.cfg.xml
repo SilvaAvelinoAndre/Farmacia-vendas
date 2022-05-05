@@ -34,6 +34,8 @@
         <mapping class="br.com.farmacia.domain.Fornecedores"/>
         <mapping class="br.com.farmacia.domain.Funcionarios"/>
         <mapping class="br.com.farmacia.domain.Produtos"/>
+        <mapping class="br.com.farmacia.domain.Vendas"/>
+         <mapping class="br.com.farmacia.domain.Itens"/>
       
     </session-factory>
 

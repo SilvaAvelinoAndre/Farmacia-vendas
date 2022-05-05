@@ -19,13 +19,13 @@ public class Produtos {
 	@Column(name="pro_id")
 	private Long id;
 	
-	@Column(name="pro_descricao")
+	@Column(name="pro_descricao", length = 50, nullable = false)
 	private String descricao;
 	
-	@Column(name="pro_quantidade")
+	@Column(name="pro_quantidade", nullable = false)
 	private Integer quantidade;
 	
-	@Column(name="pro_preco", length = 50, nullable = false, scale= 2, precision= 10 )
+	@Column(name="pro_preco", nullable = false, scale= 2, precision= 10 )
 	private Double preco;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
