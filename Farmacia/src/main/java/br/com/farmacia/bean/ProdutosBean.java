@@ -1,17 +1,12 @@
 package br.com.farmacia.bean;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.farmacia.DAO.FornecedoresDAO;
-import br.com.farmacia.DAO.ProdutoDAO;
 import br.com.farmacia.domain.Fornecedores;
 import br.com.farmacia.domain.Produtos;
-import br.com.farmacia.util.JFSUtil;
 
 @ManagedBean(name = "MBProdutos")
 @ViewScoped
@@ -53,7 +48,7 @@ public class ProdutosBean {
 	public void setComboFornecedores(ArrayList<Fornecedores> comboFornecedores) {
 		this.comboFornecedores = comboFornecedores;
 	}
-
+/*
 	@PostConstruct
 	public void prepararPesquisa() {
 		try {
@@ -132,6 +127,6 @@ public class ProdutosBean {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 }

@@ -24,7 +24,7 @@ public class Funcionarios {
 	private String cpf;
 	
 	@Column(name="fun_senha", length = 50, nullable = false  )
-	private String seha;
+	private String senha;
 	
 	@Column(name="fun_funcao", length = 50, nullable = false  )
 	private String funcao;
@@ -54,11 +54,11 @@ public class Funcionarios {
 	}
 
 	public String getSeha() {
-		return seha;
+		return senha;
 	}
 
-	public void setSeha(String seha) {
-		this.seha = seha;
+	public void setSeha(String senha) {
+		this.senha = senha;
 	}
 
 	public String getFuncao() {
