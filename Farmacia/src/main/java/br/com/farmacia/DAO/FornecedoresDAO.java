@@ -1,5 +1,8 @@
 package br.com.farmacia.DAO;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -30,5 +33,29 @@ public class FornecedoresDAO {
 			sessao.close();
 		}
 	}
+	
+	@SuppressWarnings({ "unchecked", "finally" })
+	public List<Fornecedores> listar(){
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		
+		List<Fornecedores> fornecedor = null;
 
-}
+		try {
+		
+			Query consulta = sessao.getNamedQuery("Fornecedores.listar");
+			fornecedor = consulta.list();
+			
+		} catch (RuntimeException e) {
+			throw e;
+
+		}
+
+		finally {
+			sessao.close();
+		}
+		return fornecedor;
+	}
+		
+	}
+
+

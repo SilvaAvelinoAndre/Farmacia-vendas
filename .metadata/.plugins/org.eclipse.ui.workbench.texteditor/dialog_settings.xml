@@ -6,11 +6,13 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Ite"/>
+		<item key="selection" value="senha"/>
 		<list key="findhistory">
+			<item value="seha"/>
 			<item value="pro"/>
 		</list>
 		<list key="replacehistory">
+			<item value="senha"/>
 			<item value="Ite"/>
 			<item value="ven"/>
 		</list>
