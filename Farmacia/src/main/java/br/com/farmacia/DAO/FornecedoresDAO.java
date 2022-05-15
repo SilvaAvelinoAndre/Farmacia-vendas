@@ -103,30 +103,7 @@ public class FornecedoresDAO {
 			sessao.close();
 		}
 	}
-	public void deletarPorId(Long id) {
-		// Inicia a sessão, ou seja a conexão com o bd
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-
-		Transaction transacao = null; // inicia uma variavel de transação com valor nulo
-
-		try {
-			transacao = sessao.beginTransaction(); // abrindo a transação
-			Fornecedores fornecedor = buscarPorId(id);
-			sessao.delete(fornecedor);
-			transacao.commit(); // Confirmação da transação
-
-		} catch (RuntimeException e) {
-			if (transacao != null) {
-				transacao.rollback(); // desfaz a transação
-				System.out.println("Digite um id de um fornecedor válido!!!");
-			}
-
-		}
-
-		finally {
-			sessao.close();
-		}
-	}
+	
 	public void editar(Fornecedores fornecedor) {
 		// Inicia a sessão, ou seja a conexão com o bd
 		Session sessao = HibernateUtil.getSessionFactory().openSession();

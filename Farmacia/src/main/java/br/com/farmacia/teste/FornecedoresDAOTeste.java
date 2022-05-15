@@ -14,7 +14,7 @@ public class FornecedoresDAOTeste {
 	@Ignore
 	public void salvar() {
 		Fornecedores f1 = new Fornecedores();
-		f1.setDescricao("Descrição a");
+		f1.setDescricao("teste de descrição");
 
 		FornecedoresDAO fdao = new FornecedoresDAO();
 
@@ -54,30 +54,22 @@ public class FornecedoresDAOTeste {
 
 		Fornecedores fornecedor = fdao.buscarPorId(4L); // primeiro efetua uma busca para saber quem deletar
 
-		if (fornecedor != null) {
+	
 			fdao.deletar(fornecedor); // depois aplica o deletar da classe DornecedorDAO
-		} else {
-			System.out.println("Digite um fornecedor valido!!!");
-		}
+	
 
 	}
 
-	@Test
-	@Ignore
-	public void deletarPorId() {
-		FornecedoresDAO fdao = new FornecedoresDAO();
-		fdao.deletarPorId(5L);
-
-	}
+	
 	@Test
 	public void editar() {
+		FornecedoresDAO fdao = new FornecedoresDAO();
 		
 
-		Fornecedores fornecedor = new Fornecedores();
-		fornecedor.setId(4L);
-		fornecedor.setDescricao("Nova descrição para teste");
+		Fornecedores fornecedor = fdao.buscarPorId(7L);
+		fornecedor.setDescricao("Mais um teste de edição");
 		
-		FornecedoresDAO fdao = new FornecedoresDAO();
+		
 		
 			fdao.editar(fornecedor); 
 		
