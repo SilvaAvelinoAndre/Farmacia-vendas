@@ -63,9 +63,24 @@ public class FornecedoresDAOTeste {
 	}
 
 	@Test
+	@Ignore
 	public void deletarPorId() {
 		FornecedoresDAO fdao = new FornecedoresDAO();
-		fdao.deletarPorId(10L);
+		fdao.deletarPorId(5L);
+
+	}
+	@Test
+	public void editar() {
+		
+
+		Fornecedores fornecedor = new Fornecedores();
+		fornecedor.setId(4L);
+		fornecedor.setDescricao("Nova descrição para teste");
+		
+		FornecedoresDAO fdao = new FornecedoresDAO();
+		
+			fdao.editar(fornecedor); 
+		
 
 	}
 
