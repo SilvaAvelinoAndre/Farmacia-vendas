@@ -50,14 +50,8 @@ public class FornecedoresDAOTeste {
 	public void delete() {
 		FornecedoresDAO fdao = new FornecedoresDAO();
 
-		Fornecedores fornecedor = fdao.buscarPorId(4L); // primeiro efetua uma busca para saber quem deletar
-		
-		if(fornecedor != null) {
+		Fornecedores fornecedor = fdao.buscarPorId(5L); // primeiro efetua uma busca para saber quem deletar
 		fdao.deletar(fornecedor); // depois aplica o deletar da classe DornecedorDAO
-		}
-		else {
-			System.out.println("Digite um fornecedor valido!!!");
-		}
 
 	}
 	

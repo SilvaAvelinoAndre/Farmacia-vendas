@@ -88,7 +88,6 @@ public class FornecedoresDAO {
 
 		try {
 			transacao = sessao.beginTransaction(); // abrindo a transação
-			
 			sessao.delete(fornecedor);
 			transacao.commit(); // Confirmação da transação
 

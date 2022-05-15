@@ -95,6 +95,7 @@ public class FornecedoresDAO {
 		} catch (RuntimeException e) {
 			if (transacao != null) {
 				transacao.rollback(); // desfaz a transação
+				System.out.println("Este id de fornecedor não existe!!!");
 			}
 
 		}
