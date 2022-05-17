@@ -11,10 +11,9 @@ import br.com.farmacia.domain.Fornecedores;
 public class FornecedoresDAOTeste {
 
 	@Test
-	@Ignore
 	public void salvar() {
 		Fornecedores f1 = new Fornecedores();
-		f1.setDescricao("teste de descrição");
+		f1.setDescricao("BrinquedoMania");
 
 		FornecedoresDAO fdao = new FornecedoresDAO();
 
@@ -62,6 +61,7 @@ public class FornecedoresDAOTeste {
 
 	
 	@Test
+	@Ignore
 	public void editar() {
 		FornecedoresDAO fdao = new FornecedoresDAO();
 		

@@ -6,12 +6,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import br.com.farmacia.domain.Fornecedores;
+import br.com.farmacia.domain.Produtos;
 import br.com.farmacia.util.HibernateUtil;
 
-public class FornecedoresDAO {
+public class ProdutosDAO {
 
-	public void salvar(Fornecedores fornecedor) {
+	public void salvar(Produtos produto) {
 		// Inicia a sessão, ou seja a conexão com o bd
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
@@ -19,7 +19,7 @@ public class FornecedoresDAO {
 
 		try {
 			transacao = sessao.beginTransaction(); // abrindo a transação
-			sessao.save(fornecedor);
+			sessao.save(produto);
 			transacao.commit(); // Confirmação da transação
 
 		} catch (RuntimeException e) {
@@ -36,15 +36,15 @@ public class FornecedoresDAO {
 
 	
 	@SuppressWarnings("unchecked")
-	public List<Fornecedores> listar() {
+	public List<Produtos> listar() {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
-		List<Fornecedores> fornecedor = null;
+		List<Produtos> produto = null;
 
 		try {
 
-			Query consulta = sessao.getNamedQuery("Fornecedores.listar");
-			fornecedor = consulta.list();
+			Query consulta = sessao.getNamedQuery("Produtos.listar");
+			produto = consulta.list();
 
 		} catch (RuntimeException e) {
 			throw e;
@@ -54,20 +54,20 @@ public class FornecedoresDAO {
 		finally {
 			sessao.close();
 		}
-		return fornecedor;
+		return produto;
 	}
 
 
-	public Fornecedores buscarPorId(Long id) {
+	public Produtos buscarPorId(Long id) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
-		Fornecedores fornecedor = null;
+		Produtos produto = null;
 
 		try {
 
-			Query consulta = sessao.getNamedQuery("Fornecedores.buscarPorId");
+			Query consulta = sessao.getNamedQuery("Produtos.buscarPorId");
 			consulta.setLong("id", id);
-			fornecedor =  (Fornecedores) consulta.uniqueResult();
+			produto =  (Produtos) consulta.uniqueResult();
 
 		} catch (RuntimeException e) {
 			throw e;
@@ -77,9 +77,9 @@ public class FornecedoresDAO {
 		finally {
 			sessao.close();
 		}
-		return fornecedor;
+		return produto;
 	}
-	public void deletar(Fornecedores fornecedor) {
+	public void deletar(Produtos produto) {
 		// Inicia a sessão, ou seja a conexão com o bd
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
@@ -88,7 +88,7 @@ public class FornecedoresDAO {
 		try {
 			transacao = sessao.beginTransaction(); // abrindo a transação
 			
-			sessao.delete(fornecedor);
+			sessao.delete(produto);
 			transacao.commit(); // Confirmação da transação
 
 		} catch (RuntimeException e) {
@@ -103,7 +103,7 @@ public class FornecedoresDAO {
 		}
 	}
 	
-	public void editar(Fornecedores fornecedor) {
+	public void editar(Produtos produto) {
 		// Inicia a sessão, ou seja a conexão com o bd
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
@@ -111,7 +111,7 @@ public class FornecedoresDAO {
 
 		try {
 			transacao = sessao.beginTransaction(); // abrindo a transação
-			sessao.update(fornecedor);
+			sessao.update(produto);
 			transacao.commit(); // Confirmação da transação
 
 		} catch (RuntimeException e) {

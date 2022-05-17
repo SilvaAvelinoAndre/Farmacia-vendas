@@ -9,7 +9,7 @@
 
         <!-- Configurações da conexão com o Banco -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/farmacia?useSSL=False</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/farmacia_hibernate?useSSL=False</property>
         <property name="connection.username">root</property>
         <property name="connection.password">123456</property>
 

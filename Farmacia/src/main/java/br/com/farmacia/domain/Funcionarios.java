@@ -5,10 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_funcionarios")
+@NamedQueries({
+@NamedQuery(name= "Funcionarios.listar", query = "SELECT funcionario FROM  Funcionarios funcionario" ),
+@NamedQuery(name= "Funcionarios.buscarPorId", query = "SELECT funcionario FROM  Funcionarios funcionario WHERE funcionario.id = :id")
+})
 public class Funcionarios {
 	
 
@@ -29,6 +35,11 @@ public class Funcionarios {
 	@Column(name="fun_funcao", length = 50, nullable = false  )
 	private String funcao;
 
+	public Funcionarios() {
+		
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -53,11 +64,11 @@ public class Funcionarios {
 		this.cpf = cpf;
 	}
 
-	public String getSeha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSeha(String senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
@@ -67,6 +78,11 @@ public class Funcionarios {
 
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
+	}
+
+	@Override
+	public String toString() {
+		return "Id do funcinário: " + id + ", nome: " + nome + ", cpf: " + cpf + ", senha: " + senha + ", cargo: " + funcao + ".";
 	}
 
 	

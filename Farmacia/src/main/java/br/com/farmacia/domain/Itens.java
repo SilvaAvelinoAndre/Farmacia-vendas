@@ -8,10 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_itens")
+@NamedQueries({
+@NamedQuery(name= "Itens.listar", query = "SELECT itens FROM  Itens itens" ),
+@NamedQuery(name= "Itens.buscarPorId", query = "SELECT itens FROM  Itens itens WHERE itens.id = :id")
+})
 public class Itens {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,11 +34,15 @@ public class Itens {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="tb_produtos_pro_id", referencedColumnName = "pro_id", nullable = false)
-	private Produtos produtos;
+	private Produtos produto;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="tb_vendas_ven_id", referencedColumnName = "ven_id", nullable = false)
 	private Vendas vendas;
+	
+	public Itens() {
+		
+	}
 
 	public Long getId() {
 		return id;
@@ -58,12 +68,12 @@ public class Itens {
 		this.preco_parcial = preco_parcial;
 	}
 
-	public Produtos getProdutos() {
-		return produtos;
+	public Produtos getProduto() {
+		return produto;
 	}
 
-	public void setProdutos(Produtos produtos) {
-		this.produtos = produtos;
+	public void setProduto(Produtos produto) {
+		this.produto = produto;
 	}
 
 	public Vendas getVendas() {
@@ -72,6 +82,12 @@ public class Itens {
 
 	public void setVendas(Vendas vendas) {
 		this.vendas = vendas;
+	}
+
+	@Override
+	public String toString() {
+		return "Itens [id=" + id + ", quantidade=" + quantidade + ", preco_parcial=" + preco_parcial + ", produto="
+				+ produto + ", vendas=" + vendas + "]";
 	}
 	
 	
