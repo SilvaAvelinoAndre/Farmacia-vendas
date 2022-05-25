@@ -5,6 +5,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:insert name="metadata" />
+	
 <h:head>
 
 	<h:outputStylesheet library="css" name="style.css" />
@@ -17,6 +20,7 @@
 </h:head>
 
 <h:body>
+<p:growl id="msgGlobal" />
 
 
 	<p:layout fullPage="true">
@@ -44,8 +48,8 @@
 
 					<p:submenu label="Cadastros" >
 					<p:menuitem value="Produtos"   />
-					<p:menuitem value="Fornecedores" />
-					<p:menuitem value="Funcionários"/>
+					<p:menuitem value="Fornecedores" outcome="/pages/FornecedoresPesquisa.xhtml" />
+					<p:menuitem value="Funcionários" outcome="/pages/FuncionariosPesquisa.xhtml"/>
 					</p:submenu>
 
 					<p:submenu label="Vendas" >
