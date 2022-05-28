@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/modeloSistema2.xhtml">
+
+
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{MBProdutos.prepararPesquisa}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form id="frmforprodutos">
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Produtos" />
+				</f:facet>
+			</p:toolbar>
+
+			<h:panelGrid columns="7" id="pnforprodutos">
+				<p:outputLabel value="Produtos" />
+				<p:inputText maxlength="50" size="30" />
+				<p:button value="Buscar" />
+				<p:button value="Novo" outcome="/pages/ProdutosCadastro.xhtml" />
+			</h:panelGrid>
+
+			<p:dataTable emptyMessage="Nenhum produto cadastrado!" value="#{MBProdutos.itens} "
+				filteredValue="#{MBProdutos.itensFiltrados}" 
+				var="produtos"
+				rows="14" paginator="true"
+				>
+				<p:column headerText="Id" filterBy="#{produtos.id}"
+					sortBy="#{produtos.id}">
+					<h:outputText value="#{produtos.id}" />
+				</p:column>
+				<p:column headerText="Descrição" filterBy="#{produtos.descricao}"
+					sortBy="#{produtos.descricao}">
+					<h:outputText value="#{produtos.descricao}" />
+				</p:column>
+				<p:column headerText="Quantidade" filterBy="#{produtos.quantidade}"
+					sortBy="#{produtos.quantidade}">
+					<h:outputText value="#{produtos.quantidade}" />
+			
+				</p:column>
+				
+				<p:column headerText="Fornecedor" filterBy="#{produtos.id}" sortBy="#{produtos.id}">
+				<p:outputLabel value="#{MBProdutos.produtos.fornecedores.id}" />
+				
+				</p:column>
+			
+				<p:column headerText="Opções">
+					<p:button icon="ui-icon-pencil"
+						outcome="/pages/ProdutosCadastro.xhtml">
+						<f:param name="forId" value="#{produtos.id}" />
+					</p:button>
+					<p:button icon="ui-icon-trash"
+						outcome="/pages/ProdutosCadastro.xhtml">
+						<f:param name="forId" value="#{produtos.id}" />
+					</p:button>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+

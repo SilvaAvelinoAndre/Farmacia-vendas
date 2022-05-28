@@ -8,15 +8,21 @@
 	template="/templates/modeloSistema2.xhtml">
 
 
+<ui:define name="metadata" >
+<f:metadata>
+<f:event listener="#{MBFuncionarios.prepararPesquisa}" type="preRenderView"/>
+</f:metadata>
+</ui:define>
+
 	<ui:define name="conteudo">
 
-		<h:form>
+		<h:form id="frmforfuncionario">
 		<p:toolbar>
 		<f:facet name="left">
 		<h:outputText value="Funcionários" />
 		</f:facet>
 		</p:toolbar>
-			<h:panelGrid columns="7">
+			<h:panelGrid columns="7" id="pnforfuncionario">
 				<p:outputLabel value="Pesquisar" />
 				<p:inputText maxlength="50" size="30" />
 				<p:outputLabel value="CPF" />
@@ -30,14 +36,29 @@
 				<p:button value="Novo" outcome="/pages/FuncionariosCadastro.xhtml"/>
 			</h:panelGrid>
 
-			<p:dataTable>
-				<p:column headerText="Id">
-				
+			<p:dataTable emptyMessage="Nenhum funcionário cadastrado!" value="#{MBFuncionarios.itens}"
+			filteredValue="#{MBFuncionarios.itensFiltrados}" 
+			var="funcionarios"
+			
+			rows="14"
+			paginator="true"
+			>
+				<p:column headerText="Id" filterBy="#{funcionarios.id}" sortBy="#{funcionarios.id}">
+				<h:outputText value="#{funcionarios.id}"/>
 				</p:column>
-				<p:column headerText="Descrição" >
-				
+				<p:column headerText="Nome" filterBy="#{funcionarios.nome}" sortBy="#{funcionarios.nome}">
+				<h:outputText value="#{funcionarios.nome}"/>
+				</p:column>
+				<p:column headerText="CPF" filterBy="#{funcionarios.cpf}" sortBy="#{funcionarios.cpf}">
+				<h:outputText value="#{funcionarios.cpf}"/>
 				</p:column>
 				<p:column headerText="Opções">
+				<p:button icon="ui-icon-pencil" outcome="/pages/FuncionariosCadastro.xhtml">
+				<f:param name="forId" value="#{funcionarios.id}" />
+				</p:button>
+				<p:button icon="ui-icon-trash" outcome="/pages/FuncionariosCadastro.xhtml">
+				<f:param name="forId" value="#{funcionarios.id}" />
+				</p:button>
 				</p:column>
 			</p:dataTable>
 

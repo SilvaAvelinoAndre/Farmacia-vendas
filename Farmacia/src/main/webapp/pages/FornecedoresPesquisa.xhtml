@@ -34,8 +34,8 @@
 			var="fornecedor"
 			rows="14"
 			paginator="true">
-				<p:column headerText="Id">
-				<h:outputText value="#{fornecedor.id}" />
+				<p:column headerText="Id" filterBy="#{fornecedor.id}" sortBy="#{fornecedor.id}">
+				<h:outputText value="#{fornecedor.id}"  />
 				</p:column>
 				<p:column headerText="Descrição" filterBy="#{fornecedor.descricao}" sortBy="#{fornecedor.descricao}">
 				<h:outputText value="#{fornecedor.descricao}"/>

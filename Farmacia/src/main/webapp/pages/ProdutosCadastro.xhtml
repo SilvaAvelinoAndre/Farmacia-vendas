@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/modeloSistema2.xhtml">
+	
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{MBProdutos.carregarCadastro}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+
+
+	<ui:define name="conteudo">
+		<h:form id="frmforprodutos">
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Produtos" />
+				</f:facet>
+
+			</p:toolbar>
+			<h:panelGrid columns="2" id="pnforprodutos">
+				<p:outputLabel value="Id" />
+				<p:inputText maxlength="20" size="10" readonly="true" value="#{MBProdutos.produtos.id}" />
+				<p:outputLabel value="Descricao" />
+				<p:inputText maxlength="50" size="30"  value="#{MBProdutos.produtos.descricao}" required="true" requiredMessage="Por favor Preencha a descrição do produto!"/>
+				<p:outputLabel value="Quantidade" />
+				<p:password maxlength="50" size="15" value="#{MBProdutos.produtos.quantidade}" required="true" requiredMessage="Por favor Preencha a quantidade!"/>
+				<p:outputLabel value="Valor" />
+				<p:inputText maxlength="50" size="15" value="#{MBProdutos.produtos.preco}" required="true" requiredMessage="Por favor Preencha o valor!"/>
+				
+			</h:panelGrid>
+			<h:panelGrid columns="5">
+				<p:commandButton value="Novo" actionListener="#{MBProdutos.novo}"  update=":frmforprodutos:pnforprodutos"/>
+				<p:commandButton value="Salvar" actionListener="#{MBProdutos.salvar}" update=":msgGlobal :frmforprodutos:pnforprodutos"/>
+				<p:commandButton value="Excluir" actionListener="#{MBProdutos.excluir}" update=":msgGlobal :frmforprodutos:pnforprodutos"/>
+				<p:commandButton value="Editar" actionListener="#{MBProdutos.editar}" update=":msgGlobal :frmforprodutos:pnforprodutos"/>
+				<p:button value="Voltar" outcome="/pages/ProdutosPesquisa.xhtml"/>
+				
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

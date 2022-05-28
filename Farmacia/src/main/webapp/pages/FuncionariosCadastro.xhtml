@@ -6,31 +6,40 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/modeloSistema2.xhtml">
+	
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{MBFuncionarios.carregarCadastro}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
 
 
 	<ui:define name="conteudo">
-		<h:form>
+		<h:form id="frmforfuncionario">
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Funcionários" />
 				</f:facet>
 
 			</p:toolbar>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="2" id="pnforfuncionario">
 				<p:outputLabel value="Id" />
-				<p:inputText maxlength="20" size="10" />
+				<p:inputText maxlength="20" size="10" readonly="true" value="#{MBFuncionarios.funcionarios.id}" />
 				<p:outputLabel value="Nome" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30"  value="#{MBFuncionarios.funcionarios.nome}" required="true" requiredMessage="Por favor Preencha o nome!"/>
 				<p:outputLabel value="CPF" />
-				<p:inputMask mask="999.999.999-99" size="13" />
+				<p:inputMask mask="999.999.999-99" size="13" value="#{MBFuncionarios.funcionarios.cpf}" required="true" requiredMessage="Por favor Preencha o CPF!"/>
 				<p:outputLabel value="Senha" />
-				<p:password maxlength="50" size="30" />
+				<p:password maxlength="50" size="30" value="#{MBFuncionarios.funcionarios.senha}" required="true" requiredMessage="Por favor Preencha a senha!"/>
 				<p:outputLabel value="Cargo" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30" value="#{MBFuncionarios.funcionarios.funcao}" required="true" requiredMessage="Por favor Preencha o cargo!"/>
 			</h:panelGrid>
-			<h:panelGrid columns="3">
-				<p:button value="Novo" />
-				<p:button value="Salvar" />
+			<h:panelGrid columns="5">
+				<p:commandButton value="Novo" actionListener="#{MBFuncionarios.novo}"  update=":frmforfuncionario:pnforfuncionario"/>
+				<p:commandButton value="Salvar" actionListener="#{MBFuncionarios.salvar}" update=":msgGlobal :frmforfuncionario:pnforfuncionario"/>
+				<p:commandButton value="Excluir" actionListener="#{MBFuncionarios.excluir}" update=":msgGlobal :frmforfuncionario:pnforfuncionario"/>
+				<p:commandButton value="Editar" actionListener="#{MBFuncionarios.editar}" update=":msgGlobal :frmforfuncionario:pnforfuncionario"/>
 				<p:button value="Voltar" outcome="/pages/FuncionariosPesquisa.xhtml"/>
 			</h:panelGrid>
 		</h:form>

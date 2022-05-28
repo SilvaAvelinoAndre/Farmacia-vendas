@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.farmacia.DAO.FornecedoresDAO;
+import br.com.farmacia.DAO.ProdutosDAO;
 import br.com.farmacia.domain.Fornecedores;
 import br.com.farmacia.domain.Produtos;
+import br.com.farmacia.util.JFSUtil;
 
 @ManagedBean(name = "MBProdutos")
 @ViewScoped
@@ -48,14 +51,14 @@ public class ProdutosBean {
 	public void setComboFornecedores(ArrayList<Fornecedores> comboFornecedores) {
 		this.comboFornecedores = comboFornecedores;
 	}
-/*
-	@PostConstruct
+
+	//@PostConstruct
 	public void prepararPesquisa() {
 		try {
-			ProdutoDAO pdao = new ProdutoDAO();
-			itens = pdao.listar();
+			ProdutosDAO pdao = new ProdutosDAO();
+			itens = (ArrayList<Produtos>) pdao.listar();
 
-		} catch (SQLException e) {
+		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
@@ -67,8 +70,8 @@ public class ProdutosBean {
 		try {
 			produtos = new Produtos();
 			FornecedoresDAO fdao = new FornecedoresDAO();
-			comboFornecedores = fdao.listar();
-		} catch (SQLException e) {
+			comboFornecedores = (ArrayList<Fornecedores>) fdao.listar();
+		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
@@ -78,12 +81,12 @@ public class ProdutosBean {
 	public void novo() {
 
 		try {
-			ProdutoDAO pdao = new ProdutoDAO();
+			ProdutosDAO pdao = new ProdutosDAO();
 			pdao.salvar(produtos);
-			itens = pdao.listar();
+			itens = (ArrayList<Produtos>) pdao.listar();
 
 			JFSUtil.mensagemSucesso("Salvo com sucesso!!!");
-		} catch (SQLException e) {
+		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
@@ -91,13 +94,13 @@ public class ProdutosBean {
 	
 	public void excluir() {
 		try {
-			ProdutoDAO pdao = new ProdutoDAO();
-			pdao.excluir(produtos);
-			itens = pdao.listar();
+			ProdutosDAO pdao = new ProdutosDAO();
+			pdao.deletar(produtos);
+			
 			
 			
 			JFSUtil.mensagemSucesso("Deletado com sucesso!!!");
-		} catch (SQLException e) {
+		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro("Não é posssivel excluir um fornecedor que tenha um produto associado!!!");
 			e.printStackTrace();
 		}
@@ -107,8 +110,8 @@ public class ProdutosBean {
 		try {
 			produtos = new Produtos();
 			FornecedoresDAO fdao = new FornecedoresDAO();
-			comboFornecedores = fdao.listar();
-		} catch (SQLException e) {
+			comboFornecedores = (ArrayList<Fornecedores>) fdao.listar();
+		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
@@ -117,16 +120,35 @@ public class ProdutosBean {
 	
 	public void editar() {
 		try {
-			ProdutoDAO pdao = new ProdutoDAO();
+			ProdutosDAO pdao = new ProdutosDAO();
 			pdao.editar(produtos);
-			itens = pdao.listar();
+			
 			
 			
 			JFSUtil.mensagemSucesso("Atualizado com sucesso!!!");
-		} catch (SQLException e) {
+		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
-	}*/
+	}
+	public void carregarCadastro() {
+
+		try {
+			String valor = JFSUtil.getParam("forId");
+			if (valor != null) {
+				Long id = Long.parseLong(valor);
+				ProdutosDAO fdao = new ProdutosDAO();
+				produtos = fdao.buscarPorId(id);
+			}
+			else {
+				produtos = new Produtos();
+			}
+
+		} catch (RuntimeException e) {
+			JFSUtil.mensagemErro(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
 
 }
