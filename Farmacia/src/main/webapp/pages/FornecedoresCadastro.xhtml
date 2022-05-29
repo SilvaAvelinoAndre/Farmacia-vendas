@@ -32,7 +32,10 @@
 				<p:outputLabel value="Descrição" />
 				<p:inputText maxlength="50" size="30"
 					value="#{MBFornecedores.fornecedores.descricao}" 
-					readonly="#{MBFornecedores.acao == 'Excluir'}"/>
+					readonly="#{MBFornecedores.acao == 'Excluir'}">
+					<f:validateBean/>
+					</p:inputText>
+					
 			</h:panelGrid>
 			<h:panelGrid columns="5">
 				<p:button value="Novo" actionListener="#{MBFornecedores.novo}"

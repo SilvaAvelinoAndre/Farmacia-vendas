@@ -8,6 +8,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+
 @javax.persistence.Entity
 @Table(name="tb_fornecedores")
 @NamedQueries({
@@ -21,6 +22,8 @@ public class Fornecedores {
 	@Column(name="for_id")
 	private Long id;
 	
+	
+	@javax.validation.constraints.NotEmpty(message = "Insira uma Descrição!")
 	@Column(name="for_descricao", length =50, nullable =false)
 	private String descricao;
 	
