@@ -16,6 +16,27 @@ public class FornecedoresBean {
 	private Fornecedores fornecedores;
 	private ArrayList<Fornecedores> itens;
 	private ArrayList<Fornecedores> itensFiltrados;
+	private String acao;
+	private Long id;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getAcao() {
+		return acao;
+	}
+
+	public void setAcao(String acao) {
+		this.acao = acao;
+	}
+
+	
+	
 
 	public Fornecedores getFornecedores() {
 		return fornecedores;
@@ -80,9 +101,11 @@ public class FornecedoresBean {
 	public void carregarCadastro() {
 
 		try {
-			String valor = JFSUtil.getParam("forId");
-			if (valor != null) {
-				Long id = Long.parseLong(valor);
+			
+			
+			if (id != null) {
+				
+				
 				FornecedoresDAO fdao = new FornecedoresDAO();
 				fornecedores = fdao.buscarPorId(id);
 			}
@@ -121,5 +144,7 @@ public class FornecedoresBean {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 }

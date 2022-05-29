@@ -26,7 +26,9 @@
 				<p:outputLabel value="Pesquisar" />
 				<p:inputText maxlength="50" size="30" />
 				<p:button value="Buscar" />
-				<p:button value="Novo" outcome="/pages/FornecedoresCadastro.xhtml"/>
+				<p:button value="Novo" outcome="/pages/FornecedoresCadastro.xhtml" >
+				<f:param name="foracao" value="Novo"/>
+				</p:button>
 			</h:panelGrid>
 
 			<p:dataTable emptyMessage="Nenhum Registro Cadastrado" value="#{MBFornecedores.itens}"
@@ -43,9 +45,11 @@
 				<p:column headerText="Opções">
 				<p:button icon="ui-icon-pencil" outcome="/pages/FornecedoresCadastro.xhtml">
 				<f:param name="forId" value="#{fornecedor.id}" />
+				<f:param name="foracao" value="Editar" />
 				</p:button>
 				<p:button icon="ui-icon-trash"  outcome="/pages/FornecedoresCadastro.xhtml">
 				<f:param name="forId" value="#{fornecedor.id}"/>
+				<f:param name="foracao" value="Excluir" />
 				</p:button> 
 				</p:column>
 			</p:dataTable>
