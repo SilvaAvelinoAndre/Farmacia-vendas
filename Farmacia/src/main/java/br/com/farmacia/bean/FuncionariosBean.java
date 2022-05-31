@@ -16,6 +16,27 @@ public class FuncionariosBean {
 	private Funcionarios funcionarios;
 	private ArrayList<Funcionarios> itens;
 	private ArrayList<Funcionarios> itensFiltrados;
+	private String acao;
+	private Long id;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getAcao() {
+		return acao;
+	}
+
+	public void setAcao(String acao) {
+		this.acao = acao;
+	}
+
+	
+	
 
 	public Funcionarios getFuncionarios() {
 		return funcionarios;
@@ -80,9 +101,11 @@ public class FuncionariosBean {
 	public void carregarCadastro() {
 
 		try {
-			String valor = JFSUtil.getParam("forId");
-			if (valor != null) {
-				Long id = Long.parseLong(valor);
+			
+			
+			if (id != null) {
+				
+				
 				FuncionariosDAO fdao = new FuncionariosDAO();
 				funcionarios = fdao.buscarPorId(id);
 			}
@@ -121,5 +144,7 @@ public class FuncionariosBean {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 }

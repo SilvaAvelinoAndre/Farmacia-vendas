@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name="tb_funcionarios")
@@ -23,15 +27,20 @@ public class Funcionarios {
 	@Column(name="fun_id")
 	private Long id;
 	
+	@NotEmpty(message = "Insira um Nome!")
 	@Column(name="fun_nome", length = 50, nullable = false )
 	private String nome;
 	
+	@CPF(message = "CPF Incorreto!")
 	@Column(name="fun_cpf", length = 14, nullable = false, unique = true )
 	private String cpf;
 	
+	@NotEmpty(message = "Insira uma Senha!")
+	@Size(min = 5, max  = 8, message = "A senha deve conter de 5 a 8 caracteres!")
 	@Column(name="fun_senha", length = 50, nullable = false  )
 	private String senha;
 	
+	@NotEmpty(message = "Insira um Cargo!")
 	@Column(name="fun_funcao", length = 50, nullable = false  )
 	private String funcao;
 

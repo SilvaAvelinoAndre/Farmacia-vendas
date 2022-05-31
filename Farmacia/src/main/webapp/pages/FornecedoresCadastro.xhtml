@@ -18,7 +18,7 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<h:form id="frmforformulario">
+		<h:form id="frmforfornecedor">
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Fornecedores" />
@@ -31,23 +31,26 @@
 					value="#{MBFornecedores.fornecedores.id}" />
 				<p:outputLabel value="Descrição" />
 				<p:inputText maxlength="50" size="30"
-					value="#{MBFornecedores.fornecedores.descricao}" 
+					value="#{MBFornecedores.fornecedores.descricao}"
 					readonly="#{MBFornecedores.acao == 'Excluir'}">
-					<f:validateBean/>
-					</p:inputText>
-					
+					<f:validateBean />
+				</p:inputText>
+
 			</h:panelGrid>
 			<h:panelGrid columns="5">
 				<p:button value="Novo" actionListener="#{MBFornecedores.novo}"
-					update=":frmforformulario:pnforcadastro" rendered="#{MBFornecedores.acao == 'Novo'}" />
+					update=":frmforfornecedor:pnforcadastro"
+					rendered="#{MBFornecedores.acao == 'Novo'}" />
 				<p:commandButton value="Salvar"
 					actionListener="#{MBFornecedores.salvar}"
-					update=":msgGlobal :frmforformulario:pnforcadastro" />
+					update=":msgGlobal :frmforfornecedor:pnforcadastro" />
 				<p:commandButton value="Excluir"
-					actionListener="#{MBFornecedores.excluir}" update=":msgGlobal" rendered="#{MBFornecedores.acao == 'Excluir'}" />
+					actionListener="#{MBFornecedores.excluir}" update=":msgGlobal"
+					rendered="#{MBFornecedores.acao == 'Excluir'}" />
 				<p:commandButton value="Editar"
 					actionListener="#{MBFornecedores.editar}"
-					update=":msgGlobal :frmforformulario:pnforcadastro" rendered="#{MBFornecedores.acao == 'Editar'}" />
+					update=":msgGlobal :frmforfornecedor:pnforcadastro"
+					rendered="#{MBFornecedores.acao == 'Editar'}" />
 
 				<p:button value="Voltar" outcome="/pages/FornecedoresPesquisa.xhtml" />
 			</h:panelGrid>
