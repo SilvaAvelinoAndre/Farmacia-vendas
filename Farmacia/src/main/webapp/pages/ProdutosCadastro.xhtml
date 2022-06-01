@@ -6,41 +6,81 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/modeloSistema2.xhtml">
-	
+
+
 	<ui:define name="metadata">
 		<f:metadata>
+			<f:viewParam name="proacao" value="#{MBProdutos.acao}" />
+			<f:viewParam name="forId" value="#{MBProdutos.id}" />
 			<f:event listener="#{MBProdutos.carregarCadastro}"
 				type="preRenderView" />
 		</f:metadata>
 	</ui:define>
 
-
 	<ui:define name="conteudo">
-		<h:form id="frmforprodutos">
+		<h:form id="frmforproduto">
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Produtos" />
 				</f:facet>
 
 			</p:toolbar>
-			<h:panelGrid columns="2" id="pnforprodutos">
+			<h:panelGrid columns="2" id="pnforcadastro">
 				<p:outputLabel value="Id" />
-				<p:inputText maxlength="20" size="10" readonly="true" value="#{MBProdutos.produtos.id}" />
-				<p:outputLabel value="Descricao" />
-				<p:inputText maxlength="50" size="30"  value="#{MBProdutos.produtos.descricao}" required="true" requiredMessage="Por favor Preencha a descrição do produto!"/>
-				<p:outputLabel value="Quantidade" />
-				<p:password maxlength="50" size="15" value="#{MBProdutos.produtos.quantidade}" required="true" requiredMessage="Por favor Preencha a quantidade!"/>
-				<p:outputLabel value="Valor" />
-				<p:inputText maxlength="50" size="15" value="#{MBProdutos.produtos.preco}" required="true" requiredMessage="Por favor Preencha o valor!"/>
+				<p:inputText maxlength="20" size="10" readonly="true"
+					value="#{MBProdutos.produtos.id}" />
+				<p:outputLabel value="Descrição" />
+				<p:inputText maxlength="50" size="30"
+					value="#{MBProdutos.produtos.descricao}"
+					readonly="#{MBProdutos.acao == 'Excluir'}">
+					<f:validateBean />
+				</p:inputText>
 				
+				
+				
+				<p:outputLabel value="Quantidade" />
+				<p:inputText maxlength="20" size="20"
+					value="#{MBProdutos.produtos.quantidade}"
+					readonly="#{MBProdutos.acao == 'Excluir'}">
+					<f:validateBean />
+				</p:inputText>
+				
+				<p:outputLabel value="Preço" />
+				<p:inputText maxlength="20" size="20"
+					value="#{MBProdutos.produtos.preco}"
+					readonly="#{MBProdutos.acao == 'Excluir'}">
+					<f:validateBean />
+				</p:inputText>
+				
+				<p:outputLabel value="Fornecedor" />
+				<p:selectOneMenu
+					value="#{MBProdutos.produtos.fornecedores}"
+					readonly="#{MBProdutos.acao == 'Excluir'}"
+					converter="fornecedoresConverter">
+					<f:selectItem itemValue="" itemLabel="Selecione um Fornecedor"/>
+					<f:selectItems value="#{MBProdutos.listaFornecedores}" var="fornecedor"
+					itemValue="#{fornecedor}" itemLabel="#{fornecedor.descricao}"/>
+					<f:validateBean/>
+				</p:selectOneMenu>
+				
+
 			</h:panelGrid>
 			<h:panelGrid columns="5">
-				<p:commandButton value="Novo" actionListener="#{MBProdutos.novo}"  update=":frmforprodutos:pnforprodutos"/>
-				<p:commandButton value="Salvar" actionListener="#{MBProdutos.salvar}" update=":msgGlobal :frmforprodutos:pnforprodutos"/>
-				<p:commandButton value="Excluir" actionListener="#{MBProdutos.excluir}" update=":msgGlobal :frmforprodutos:pnforprodutos"/>
-				<p:commandButton value="Editar" actionListener="#{MBProdutos.editar}" update=":msgGlobal :frmforprodutos:pnforprodutos"/>
-				<p:button value="Voltar" outcome="/pages/ProdutosPesquisa.xhtml"/>
-				
+				<p:button value="Novo" actionListener="#{MBProdutos.novo}"
+					update=":frmforproduto:pnforcadastro"
+					rendered="#{MBProdutos.acao == 'Novo'}" />
+				<p:commandButton value="Salvar"
+					actionListener="#{MBProdutos.salvar}"
+					update=":msgGlobal :frmforproduto:pnforcadastro" />
+				<p:commandButton value="Excluir"
+					actionListener="#{MBProdutos.excluir}" update=":msgGlobal"
+					rendered="#{MBProdutos.acao == 'Excluir'}" />
+				<p:commandButton value="Editar"
+					actionListener="#{MBProdutos.editar}"
+					update=":msgGlobal :frmforproduto:pnforcadastro"
+					rendered="#{MBProdutos.acao == 'Editar'}" />
+
+				<p:button value="Voltar" outcome="/pages/ProdutosPesquisa.xhtml" />
 			</h:panelGrid>
 		</h:form>
 

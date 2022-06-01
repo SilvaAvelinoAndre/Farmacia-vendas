@@ -1,6 +1,7 @@
 package br.com.farmacia.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -84,6 +85,25 @@ public class Vendas {
 	public String toString() {
 		return "Vendas [id=" + id + ", horario=" + horario + ", preco_total=" + preco_total + ", funcionarios="
 				+ funcionarios + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(funcionarios, id);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vendas other = (Vendas) obj;
+		return Objects.equals(funcionarios, other.funcionarios) && Objects.equals(id, other.id);
 	}
 
 	

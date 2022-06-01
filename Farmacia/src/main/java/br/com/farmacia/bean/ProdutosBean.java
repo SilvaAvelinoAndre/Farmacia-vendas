@@ -1,6 +1,7 @@
 package br.com.farmacia.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -18,7 +19,28 @@ public class ProdutosBean {
 	private Produtos produtos;
 	private ArrayList<Produtos> itens;
 	private ArrayList<Produtos> itensFiltrados;
-	private ArrayList<Fornecedores> comboFornecedores;
+	private String acao;
+	private Long id;
+	private List<Fornecedores> listaFornecedores;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getAcao() {
+		return acao;
+	}
+
+	public void setAcao(String acao) {
+		this.acao = acao;
+	}
+
+	
+	
 
 	public Produtos getProdutos() {
 		return produtos;
@@ -43,112 +65,105 @@ public class ProdutosBean {
 	public void setItensFiltrados(ArrayList<Produtos> itensFiltrados) {
 		this.itensFiltrados = itensFiltrados;
 	}
-
-	public ArrayList<Fornecedores> getComboFornecedores() {
-		return comboFornecedores;
+	
+	public List<Fornecedores> getListaFornecedores() {
+		return listaFornecedores;
 	}
 
-	public void setComboFornecedores(ArrayList<Fornecedores> comboFornecedores) {
-		this.comboFornecedores = comboFornecedores;
-	}
-
-	//@PostConstruct
-	public void prepararPesquisa() {
-		try {
-			ProdutosDAO pdao = new ProdutosDAO();
-			itens = (ArrayList<Produtos>) pdao.listar();
-
-		} catch (RuntimeException e) {
-			JFSUtil.mensagemErro(e.getMessage());
-			e.printStackTrace();
-		}
-
-	}
-
-	public void prepararNovo() {
-
-		try {
-			produtos = new Produtos();
-			FornecedoresDAO fdao = new FornecedoresDAO();
-			comboFornecedores = (ArrayList<Fornecedores>) fdao.listar();
-		} catch (RuntimeException e) {
-			JFSUtil.mensagemErro(e.getMessage());
-			e.printStackTrace();
-		}
-
+	public void setListaFornecedores(List<Fornecedores> listaFornecedores) {
+		this.listaFornecedores = listaFornecedores;
 	}
 
 	public void novo() {
+		produtos = new Produtos();
+	}
+
+	public void salvar() {
 
 		try {
+			
 			ProdutosDAO pdao = new ProdutosDAO();
 			pdao.salvar(produtos);
-			itens = (ArrayList<Produtos>) pdao.listar();
+			
+			Produtos produtos = new Produtos();
 
 			JFSUtil.mensagemSucesso("Salvo com sucesso!!!");
+
 		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
+
+	// @PostConstruct // usado para iniciar o método ao abrir a tela, não sendo
+	// usado neste método pois na paginaPesquisa sendo usado um <f:event
+	public void prepararPesquisa() {
+		
+		try {
+
+			ProdutosDAO fdao = new ProdutosDAO();
+			itens = (ArrayList<Produtos>) fdao.listar();
+
+		} catch (RuntimeException e) {
+			JFSUtil.mensagemErro(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
+	public void carregarCadastro() {
+
+		try {
+			
+			
+			if (id != null) {
+				
+				
+				ProdutosDAO fdao = new ProdutosDAO();
+				produtos = fdao.buscarPorId(id); // atribuir a busca por id do bd a variavel produtos
+			}
+			else {
+				produtos = new Produtos();
+			}
+
+			FornecedoresDAO fdao = new FornecedoresDAO();
+			setListaFornecedores(fdao.listar()); // setar a lista buscada no bd na variavel listaFornecedores, o método acima faz a mesma coisa que este
+			
+			
+		} catch (RuntimeException e) {
+			JFSUtil.mensagemErro(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
 	public void excluir() {
 		try {
-			ProdutosDAO pdao = new ProdutosDAO();
-			pdao.deletar(produtos);
-			
-			
-			
-			JFSUtil.mensagemSucesso("Deletado com sucesso!!!");
-		} catch (RuntimeException e) {
-			JFSUtil.mensagemErro("Não é posssivel excluir um fornecedor que tenha um produto associado!!!");
-			e.printStackTrace();
-		}
-	}
-	public void prepararEditar() {
 
-		try {
-			produtos = new Produtos();
-			FornecedoresDAO fdao = new FornecedoresDAO();
-			comboFornecedores = (ArrayList<Fornecedores>) fdao.listar();
+			ProdutosDAO fdao = new ProdutosDAO();
+			fdao.deletar(produtos);
+
+			JFSUtil.mensagemSucesso("Deletado com sucesso!!!");
 		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
-
 	}
-	
+
 	public void editar() {
 		try {
-			ProdutosDAO pdao = new ProdutosDAO();
-			pdao.editar(produtos);
-			
-			
-			
+			ProdutosDAO fdao = new ProdutosDAO();
+			fdao.editar(produtos); 
+
 			JFSUtil.mensagemSucesso("Atualizado com sucesso!!!");
 		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	public void carregarCadastro() {
 
-		try {
-			String valor = JFSUtil.getParam("forId");
-			if (valor != null) {
-				Long id = Long.parseLong(valor);
-				ProdutosDAO fdao = new ProdutosDAO();
-				produtos = fdao.buscarPorId(id);
-			}
-			else {
-				produtos = new Produtos();
-			}
-
-		} catch (RuntimeException e) {
-			JFSUtil.mensagemErro(e.getMessage());
-			e.printStackTrace();
-		}
-
-	}
+	
+	
+	
 
 }

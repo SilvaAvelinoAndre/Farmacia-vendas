@@ -1,5 +1,7 @@
 package br.com.farmacia.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -64,6 +66,25 @@ public class Fornecedores {
 	@Override
 	public String toString() {
 		return "Id do Fornecedor = " + id + ", Descricao = " + descricao + "!";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(descricao, id);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Fornecedores other = (Fornecedores) obj;
+		return Objects.equals(descricao, other.descricao) && Objects.equals(id, other.id);
 	}
 
 }

@@ -7,7 +7,6 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/modeloSistema2.xhtml">
 
-
 	<ui:define name="metadata">
 		<f:metadata>
 			<f:event listener="#{MBProdutos.prepararPesquisa}"
@@ -16,54 +15,59 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
+	
+	
 
-		<h:form id="frmforprodutos">
-			<p:toolbar>
-				<f:facet name="left">
-					<h:outputText value="Produtos" />
-				</f:facet>
-			</p:toolbar>
-
-			<h:panelGrid columns="7" id="pnforprodutos">
-				<p:outputLabel value="Produtos" />
+		<h:form id="frmforFormulario">
+		<p:toolbar>
+		<f:facet name="left">
+		<h:outputText value="Produtos" />
+		</f:facet>
+		</p:toolbar>
+			<h:panelGrid columns="4" id="pnforCadastro">
+				<p:outputLabel value="Pesquisar" />
 				<p:inputText maxlength="50" size="30" />
 				<p:button value="Buscar" />
-				<p:button value="Novo" outcome="/pages/ProdutosCadastro.xhtml" />
+				<p:button value="Novo" outcome="/pages/ProdutosCadastro.xhtml" >
+				<f:param name="proacao" value="Novo"/>
+				</p:button>
 			</h:panelGrid>
 
-			<p:dataTable emptyMessage="Nenhum produto cadastrado!" value="#{MBProdutos.itens} "
-				filteredValue="#{MBProdutos.itensFiltrados}" 
-				var="produtos"
-				rows="14" paginator="true"
-				>
-				<p:column headerText="Id" filterBy="#{produtos.id}"
-					sortBy="#{produtos.id}">
-					<h:outputText value="#{produtos.id}" />
+			<p:dataTable emptyMessage="Nenhum Registro Cadastrado" value="#{MBProdutos.itens}"
+			filteredValue="#{MBProdutos.itensFiltrados}"
+			var="produto"
+			rows="14"
+			paginator="true">
+				<p:column headerText="Id" filterBy="#{produto.id}" sortBy="#{produto.id}">
+				<h:outputText value="#{produto.id}"  />
 				</p:column>
-				<p:column headerText="Descrição" filterBy="#{produtos.descricao}"
-					sortBy="#{produtos.descricao}">
-					<h:outputText value="#{produtos.descricao}" />
-				</p:column>
-				<p:column headerText="Quantidade" filterBy="#{produtos.quantidade}"
-					sortBy="#{produtos.quantidade}">
-					<h:outputText value="#{produtos.quantidade}" />
-			
+				<p:column headerText="Descrição" filterBy="#{produto.descricao}" sortBy="#{produto.descricao}">
+				<h:outputText value="#{produto.descricao}"/>
 				</p:column>
 				
-				<p:column headerText="Fornecedor" filterBy="#{produtos.id}" sortBy="#{produtos.id}">
-				<p:outputLabel value="#{MBProdutos.produtos.fornecedores.id}" />
 				
+				
+				<p:column headerText="Quantidade" filterBy="#{produto.quantidade}" sortBy="#{produto.quantidade}">
+				<h:outputText value="#{produto.quantidade}"/>
 				</p:column>
-			
+				
+				<p:column headerText="Preço" filterBy="#{produto.preco}" sortBy="#{produto.preco}">
+				<h:outputText value="#{produto.preco}"/>
+				</p:column>
+				
+				<p:column headerText="Fornecedor" filterBy="#{produto.fornecedores.descricao}" sortBy="#{produto.fornecedores.descricao}">
+				<h:outputText value="#{produto.fornecedores.descricao}"/>
+				</p:column>
+				
 				<p:column headerText="Opções">
-					<p:button icon="ui-icon-pencil"
-						outcome="/pages/ProdutosCadastro.xhtml">
-						<f:param name="forId" value="#{produtos.id}" />
-					</p:button>
-					<p:button icon="ui-icon-trash"
-						outcome="/pages/ProdutosCadastro.xhtml">
-						<f:param name="forId" value="#{produtos.id}" />
-					</p:button>
+				<p:button icon="ui-icon-pencil" outcome="/pages/ProdutosCadastro.xhtml">
+				<f:param name="forId" value="#{produto.id}" />
+				<f:param name="proacao" value="Editar" />
+				</p:button>
+				<p:button icon="ui-icon-trash"  outcome="/pages/ProdutosCadastro.xhtml">
+				<f:param name="forId" value="#{produto.id}"/>
+				<f:param name="proacao" value="Excluir" />
+				</p:button> 
 				</p:column>
 			</p:dataTable>
 

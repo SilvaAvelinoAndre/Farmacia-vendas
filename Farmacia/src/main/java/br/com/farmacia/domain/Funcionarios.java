@@ -1,5 +1,7 @@
 package br.com.farmacia.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -92,6 +94,26 @@ public class Funcionarios {
 	@Override
 	public String toString() {
 		return "Id do funcinário: " + id + ", nome: " + nome + ", cpf: " + cpf + ", senha: " + senha + ", cargo: " + funcao + ".";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cpf, funcao, id, nome, senha);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funcionarios other = (Funcionarios) obj;
+		return Objects.equals(cpf, other.cpf) && Objects.equals(funcao, other.funcao) && Objects.equals(id, other.id)
+				&& Objects.equals(nome, other.nome) && Objects.equals(senha, other.senha);
 	}
 
 	

@@ -1,5 +1,7 @@
 package br.com.farmacia.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -88,6 +90,25 @@ public class Itens {
 	public String toString() {
 		return "Itens [id=" + id + ", quantidade=" + quantidade + ", preco_parcial=" + preco_parcial + ", produto="
 				+ produto + ", vendas=" + vendas + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, preco_parcial, produto, quantidade, vendas);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Itens other = (Itens) obj;
+		return Objects.equals(id, other.id) && Objects.equals(preco_parcial, other.preco_parcial)
+				&& Objects.equals(produto, other.produto) && Objects.equals(quantidade, other.quantidade)
+				&& Objects.equals(vendas, other.vendas);
 	}
 	
 	
