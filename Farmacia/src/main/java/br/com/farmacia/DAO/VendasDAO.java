@@ -11,15 +11,16 @@ import br.com.farmacia.util.HibernateUtil;
 
 public class VendasDAO {
 
-	public void salvar(Vendas vendas) {
+	public Long salvar(Vendas vendas) {
 		// Inicia a sessão, ou seja a conexão com o bd
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
 		Transaction transacao = null; // inicia uma variavel de transação com valor nulo
 
+		Long id = null;
 		try {
 			transacao = sessao.beginTransaction(); // abrindo a transação
-			sessao.save(vendas);
+			id = (Long) sessao.save(vendas);
 			transacao.commit(); // Confirmação da transação
 
 		} catch (RuntimeException e) {
@@ -32,6 +33,7 @@ public class VendasDAO {
 		finally {
 			sessao.close();
 		}
+		return id;
 	}
 
 	

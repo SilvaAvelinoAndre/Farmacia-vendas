@@ -143,7 +143,7 @@ public class ProdutosBean {
 			ProdutosDAO fdao = new ProdutosDAO();
 			fdao.deletar(produtos);
 
-			JFSUtil.mensagemSucesso("Deletado com sucesso!!!");
+			JFSUtil.mensagemSucesso("Produto deletado com sucesso!!!");
 		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();

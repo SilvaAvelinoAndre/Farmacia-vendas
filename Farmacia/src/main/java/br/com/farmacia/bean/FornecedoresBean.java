@@ -19,6 +19,7 @@ public class FornecedoresBean {
 	private String acao;
 	private Long id;
 	
+	
 	public Long getId() {
 		return id;
 	}
@@ -125,11 +126,12 @@ public class FornecedoresBean {
 
 			FornecedoresDAO fdao = new FornecedoresDAO();
 			fdao.deletar(fornecedores);
-
-			JFSUtil.mensagemSucesso("Deletado com sucesso!!!");
+		
+			JFSUtil.mensagemSucesso("Fornecedor deletado com sucesso!!!");
+	
 		} catch (RuntimeException e) {
 			JFSUtil.mensagemErro("Não é posssivel excluir um fornecedor que tenha um produto associado!!!");
-			e.printStackTrace();
+			
 		}
 	}
 
@@ -145,6 +147,7 @@ public class FornecedoresBean {
 		}
 	}
 
+	
 	
 
 }
